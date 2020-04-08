@@ -1,6 +1,46 @@
 .App {
   height: 100vh;
   overflow: hidden;
+  position: relative;
+}
+
+.Top-icon {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end; */
+  z-index: 1;
+  width: 100vw;
+  animation-name: Init-app-logo;
+  animation-duration: 10s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.Top-icon img {
+  padding: 15px;
+  width: 50vw;
+  min-width: 200px;
+  max-width: 200px;
+  transition: all 2s ease-out;
+  animation: Animate-app-logo 5s infinite;
+}
+
+.App-mask {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  animation-delay: 3s;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
 .App-frames {
@@ -10,8 +50,16 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  /* animation: animate-app-frames 7s infinite; */
-  box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+  border: 8px solid #fefeff;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 0px 1px #cce6f8) drop-shadow(0px 0px 4px #ecf6fd);
+  /* animation: animate-app-frames 5s infinite; */
+  /* box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.384),
+    inset 0px 0px 7px 3px rgba(0, 0, 0, 0.37); */
+}
+
+.Hide-element {
+  opacity: 0;
 }
 
 .PhotoPlayer {
@@ -31,7 +79,16 @@
   animation-timing-function: linear;
 }
 
-@keyframes showPhotoPlayer-image {
+@keyframes Hide-content-mask {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes Show-photo-player-image {
   0% {
     opacity: 0;
     transform: scale(1.7);
@@ -45,7 +102,7 @@
   }
 }
 
-@keyframes hidePhotoPlayer-image {
+@keyframes Hide-photo-player-image {
   0% {
     opacity: 1;
     transform: scale(1.2);
@@ -58,15 +115,64 @@
     transform: scale(0.8);
   }
 }
-/*
+/* 
 @keyframes animate-app-frames {
   0% {
-    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+    filter: drop-shadow(0px 0px 3px #cce6f8) drop-shadow(0px 0px 5px #ecf6fd);
   }
   50% {
-    box-shadow: inset 0px 0px 6px 6px rgba(0, 0, 0, 0.404);
+    filter: drop-shadow(0px 0px 5px #86badf) drop-shadow(0px 0px 15px #b3dbf8);
   }
   100% {
-    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+    filter: drop-shadow(0px 0px 3px #cce6f8) drop-shadow(0px 0px 5px #ecf6fd);
   }
-}*/
+} */
+
+@keyframes Animate-app-logo {
+  0% {
+    filter: drop-shadow(0px 0px 5px #86badf);
+  }
+  50% {
+    filter: drop-shadow(0px 0px 15px #b3dbf8);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 5px #86badf);
+  }
+}
+
+@keyframes Init-app-logo {
+  0% {
+    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  50% {
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 100%;
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  .Top-icon img {
+    min-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1020px) {
+  .Top-icon img {
+    min-width: 300px;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .Top-icon img {
+    min-width: 400px;
+  }
+}

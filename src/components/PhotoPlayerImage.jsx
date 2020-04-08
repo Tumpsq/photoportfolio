@@ -9,7 +9,7 @@ const PhotoPlayerImage = ({ img, state }) => {
       alt="asd"
       style={{
         animationName: `${
-          state ? "showPhotoPlayer-image" : "hidePhotoPlayer-image"
+          state ? "Show-photo-player-image" : "Hide-photo-player-image"
         }`,
       }}
     />

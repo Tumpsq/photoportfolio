@@ -26,7 +26,7 @@ import img_21 from "../assets/img/img_21.JPG";
 var currentImageIndex = 0;
 var nextImageIndex = 0;
 
-const PhotoPlayer = ({ initMouseMoveFunctions }) => {
+const PhotoPlayer = ({ initMouseMoveFunctions, setContentMaskState }) => {
   useEffect(() => {
     window.addEventListener("animationend", handlePhotoChange);
     initMouseMoveFunctions();
@@ -67,7 +67,7 @@ const PhotoPlayer = ({ initMouseMoveFunctions }) => {
 
   const handlePhotoChange = (event) => {
     switch (event.animationName) {
-      case "showPhotoPlayer-image":
+      case "Show-photo-player-image":
         // NEW PHOTO HAS NOW FULLY ANIMATED TO PLAYER
         // WAIT FOR TIMEOUT AND CHANGE TO NEXT ONE
         if (currentImageIndex >= images.length - 1) {
@@ -77,11 +77,6 @@ const PhotoPlayer = ({ initMouseMoveFunctions }) => {
           nextImageIndex++;
           console.log(nextImageIndex);
         }
-
-        console.log("images.length ", images.length);
-        console.log("currentImageIndex ", currentImageIndex);
-        console.log("nextImageIndex ", nextImageIndex);
-
         //setTimeout(() => {
         let newState = [...images];
         newState[currentImageIndex].state = false;
@@ -98,7 +93,8 @@ const PhotoPlayer = ({ initMouseMoveFunctions }) => {
 
   return (
     <div className="PhotoPlayer" id="Photo-player">
-      {images.map((img) => {
+      {images.map((img, index) => {
+        index === images.length - 1 && setContentMaskState(false);
         return <PhotoPlayerImage key={img.id} img={img} state={img.state} />;
       })}
     </div>
