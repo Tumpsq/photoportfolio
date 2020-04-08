@@ -3,6 +3,17 @@
   overflow: hidden;
 }
 
+.App-frames {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  /* animation: animate-app-frames 7s infinite; */
+  box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+}
+
 .PhotoPlayer {
   position: relative;
   height: 100%;
@@ -15,24 +26,47 @@
   object-fit: cover;
   opacity: 0;
   height: 100%;
-  animation-duration: 5s;
+  animation-duration: 15s;
   animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
 @keyframes showPhotoPlayer-image {
   0% {
     opacity: 0;
+    transform: scale(1.7);
+  }
+  40% {
+    opacity: 1;
   }
   100% {
     opacity: 1;
+    transform: scale(1.2);
   }
 }
 
 @keyframes hidePhotoPlayer-image {
   0% {
     opacity: 1;
+    transform: scale(1.2);
+  }
+  40% {
+    opacity: 0;
   }
   100% {
     opacity: 0;
+    transform: scale(0.8);
   }
 }
+/*
+@keyframes animate-app-frames {
+  0% {
+    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+  }
+  50% {
+    box-shadow: inset 0px 0px 6px 6px rgba(0, 0, 0, 0.404);
+  }
+  100% {
+    box-shadow: inset 0px 0px 6px 1px rgba(0, 0, 0, 0.62);
+  }
+}*/

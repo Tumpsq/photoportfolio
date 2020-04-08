@@ -26,9 +26,10 @@ import img_21 from "../assets/img/img_21.JPG";
 var currentImageIndex = 0;
 var nextImageIndex = 0;
 
-const PhotoPlayer = () => {
+const PhotoPlayer = ({ initMouseMoveFunctions }) => {
   useEffect(() => {
     window.addEventListener("animationend", handlePhotoChange);
+    initMouseMoveFunctions();
   }, []);
 
   //   // SHOW FIRST PHOTO WHEN PHOTOPLAYER HAS BEEN MOUNTED
@@ -81,14 +82,14 @@ const PhotoPlayer = () => {
         console.log("currentImageIndex ", currentImageIndex);
         console.log("nextImageIndex ", nextImageIndex);
 
-        setTimeout(() => {
-          let newState = [...images];
-          newState[currentImageIndex].state = false;
-          newState[nextImageIndex].state = true;
-          setImages(newState);
-          console.log(newState);
-          currentImageIndex = nextImageIndex;
-        }, 3000);
+        //setTimeout(() => {
+        let newState = [...images];
+        newState[currentImageIndex].state = false;
+        newState[nextImageIndex].state = true;
+        setImages(newState);
+        console.log(newState);
+        currentImageIndex = nextImageIndex;
+        //}, 3000);
         break;
       default:
         break;
@@ -96,7 +97,7 @@ const PhotoPlayer = () => {
   };
 
   return (
-    <div className="PhotoPlayer">
+    <div className="PhotoPlayer" id="Photo-player">
       {images.map((img) => {
         return <PhotoPlayerImage key={img.id} img={img} state={img.state} />;
       })}
