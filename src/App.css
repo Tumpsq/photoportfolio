@@ -4,29 +4,44 @@
   position: relative;
 }
 
-.Top-icon {
+.App-menu-content {
   position: absolute;
-  text-align: center;
-  top: 50%;
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end; */
+  width: 100%;
   z-index: 1;
-  width: 100vw;
-  animation-name: Init-app-logo;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  animation-name: Init-menu-content;
   animation-duration: 10s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.Top-icon img {
-  padding: 15px;
-  width: 50vw;
-  min-width: 200px;
-  max-width: 200px;
+.Photographer-logo {
+  max-width: 250px;
+  /* filter: blur(0px) drop-shadow(0px 0px 5px #86badf); */
+}
+
+.Photographer-logo img {
+  width: 100%;
   transition: all 2s ease-out;
-  animation: Animate-app-logo 5s infinite;
+  /* animation: Animate-app-logo 5s infinite; */
+}
+
+.Photographer-profile-image {
+  width: 50vw;
+  max-width: 200px;
+  /* filter: blur(0px) drop-shadow(0px 0px 5px #86badf); */
+}
+
+.Photographer-profile-image img {
+  width: 100%;
+  opacity: 0.8;
+  border-radius: 50%;
 }
 
 .App-mask {
@@ -52,7 +67,7 @@
   z-index: 1;
   border: 8px solid #fefeff;
   box-sizing: border-box;
-  filter: drop-shadow(0px 0px 1px #cce6f8) drop-shadow(0px 0px 4px #ecf6fd);
+  filter: drop-shadow(0px 0px 1px #cce6f8) drop-shadow(0px 0px 2px #ecf6fd);
   /* animation: animate-app-frames 5s infinite; */
   /* box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.384),
     inset 0px 0px 7px 3px rgba(0, 0, 0, 0.37); */
@@ -128,7 +143,7 @@
   }
 } */
 
-@keyframes Animate-app-logo {
+/* @keyframes Animate-app-logo {
   0% {
     filter: drop-shadow(0px 0px 5px #86badf);
   }
@@ -138,41 +153,34 @@
   100% {
     filter: drop-shadow(0px 0px 5px #86badf);
   }
-}
+} */
 
-@keyframes Init-app-logo {
+@keyframes Init-menu-content {
   0% {
     opacity: 0;
-    top: 50%;
-    transform: translateY(-50%);
   }
   50% {
     opacity: 1;
-    top: 50%;
-    transform: translateY(-50%);
   }
-
   100% {
-    top: 100%;
-    transform: translateY(-100%);
     opacity: 1;
   }
 }
 
+@media only screen and (min-width: 360px) {
+}
+
 @media only screen and (min-width: 760px) {
-  .Top-icon img {
-    min-width: 300px;
-  }
 }
 
 @media only screen and (min-width: 1020px) {
-  .Top-icon img {
-    min-width: 300px;
-  }
 }
 
 @media only screen and (min-width: 1080px) {
-  .Top-icon img {
-    min-width: 400px;
+  .Photographer-logo {
+    max-width: 400px;
+  }
+  .Photographer-profile-image {
+    max-width: 250px;
   }
 }
