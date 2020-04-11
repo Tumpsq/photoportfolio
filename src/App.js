@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import PhotoPlayer from "./components/PhotoPlayer";
-import Photographer_logo from "./assets/img/TuomoHautalaPhotographyVesileima.png";
-import Photographer_profile_image from "./assets/img/Photographer_profile_image.jpg";
+import Photographer_logo from "./assets/img/TuomoHautalaPhotographyWM_w400.png";
+import Photographer_profile_image from "./assets/img/Profile_img_0.jpg";
 
 function App() {
   // const initMobileTiltFunctions = () => {
@@ -27,9 +27,20 @@ function App() {
   //   }
   // };
 
-  // useEffect(() => {
-  //   initMobileTiltFunctions();
-  // }, []);
+  useEffect(() => {
+    function winLoad(callback) {
+      if (document.readyState === "complete") {
+        callback();
+      } else {
+        window.addEventListener("load", callback);
+      }
+    }
+
+    winLoad(function () {
+      initMouseMoveFunctions();
+      setContentMaskState(false);
+    });
+  }, []);
 
   const initMouseMoveFunctions = () => {
     const windowWidth = window.innerWidth;
@@ -54,6 +65,40 @@ function App() {
   };
 
   const [contentMaskState, setContentMaskState] = useState(true);
+  const [menuState, setMenuState] = useState("init");
+
+  const handleMenuClick = () => {
+    const photographerLogo = document.querySelector(".Photographer-logo");
+    const photographerProfileInfo = document.querySelector(
+      ".Photographer-profile-info"
+    );
+    setMenuState(() => {
+      if (menuState === "init" || menuState === "hide") {
+        setMenuState("show");
+        photographerLogo.style.setProperty("animation-duration", "2s");
+        photographerLogo.style.setProperty(
+          "animation-name",
+          "Show-photographer-logo"
+        );
+        photographerProfileInfo.style.setProperty("animation-duration", "2s");
+        photographerProfileInfo.style.setProperty(
+          "animation-name",
+          "Show-profile-info"
+        );
+      } else {
+        setMenuState("hide");
+        photographerLogo.style.setProperty(
+          "animation-name",
+          "Hide-photographer-logo"
+        );
+        photographerProfileInfo.style.setProperty(
+          "animation-name",
+          "Hide-profile-info"
+        );
+      }
+    });
+  };
+
   return (
     <div className="App">
       <div
@@ -64,14 +109,29 @@ function App() {
           }`,
         }}
       />
-      <div className="App-menu-content">
-        <div className="Photographer-logo">
-          <img src={Photographer_logo} alt="Photograpger_logo_image" />
-        </div>
-        <div className="Photographer-profile-info">
-          <div className="Photographer-profile-image">
-            <img src={Photographer_profile_image} alt="" />
+      <div className="Menu-button">
+        <div
+          className="icon-3"
+          onClick={() => handleMenuClick()}
+          style={{
+            transform: `${
+              menuState === "init" || menuState === "hide"
+                ? "rotate(-135deg) rotate3d(0, 0, 1, 0deg)"
+                : "rotate(-135deg) rotate3d(0, 0, 1, 180deg)"
+            }`,
+          }}
+        >
+          <div className="arrow">
+            <div className="top-arrow"></div>
           </div>
+        </div>
+      </div>
+      <div className="Photographer-logo">
+        <img src={Photographer_logo} alt="Photograpger_logo_image" />
+      </div>
+      <div className="Photographer-profile-info">
+        <div className="Photographer-profile-image">
+          <img src={Photographer_profile_image} alt="" />
         </div>
       </div>
       <div className="App-frames" />
