@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Loader from "./components/Loader";
 import PhotoPlayer from "./components/PhotoPlayer";
 import Photographer_logo from "./assets/img/TuomoHautalaPhotographyWM_w400.png";
 import Photographer_profile_image from "./assets/img/Profile_img_0.jpg";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [contentMaskState, setContentMaskState] = useState(true);
+  const [menuState, setMenuState] = useState(null);
   // const initMobileTiltFunctions = () => {
   //   //const inner = document.getElementById("inner");
   //   const limit = 45;
@@ -37,8 +41,23 @@ function App() {
     }
 
     winLoad(function () {
+      console.log("LOADED");
       initMouseMoveFunctions();
+      setIsLoading(false);
       setContentMaskState(false);
+      setMenuState("init");
+      const photographerLogo = document.querySelector(".Photographer-logo");
+      const photographerProfileInfo = document.querySelector(
+        ".Photographer-profile-info"
+      );
+      photographerLogo.style.setProperty(
+        "animation-name",
+        "Init-photographer-logo"
+      );
+      photographerProfileInfo.style.setProperty(
+        "animation-name",
+        "Init-profile-info"
+      );
     });
   }, []);
 
@@ -63,9 +82,6 @@ function App() {
       }%, -${e.clientY / windowHeight / 0.5}%, 0)`;
     });
   };
-
-  const [contentMaskState, setContentMaskState] = useState(true);
-  const [menuState, setMenuState] = useState("init");
 
   const handleMenuClick = () => {
     const photographerLogo = document.querySelector(".Photographer-logo");
@@ -101,6 +117,7 @@ function App() {
 
   return (
     <div className="App">
+      {isLoading && <Loader state={isLoading} />}
       <div
         className="App-mask"
         style={{

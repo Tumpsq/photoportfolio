@@ -5,24 +5,44 @@
   max-width: 2500px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-menu-content {
-  position: absolute;
-  height: 100%;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation-name: Init-menu-content;
-  animation-duration: 7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+.Loader {
+  position: relative;
+  z-index: 999;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 3px black);
+  animation-name: Loading;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes Loading {
+  0% {
+    filter: drop-shadow(0px 0px 2px black) drop-shadow(0px 0px 0px black)
+      drop-shadow(0px 0px 0px black);
+  }
+  50% {
+    filter: drop-shadow(0px 0px 3px black) drop-shadow(0px 0px 5px black)
+      drop-shadow(0px 0px 10px black);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 2px black) drop-shadow(0px 0px 0px black)
+      drop-shadow(0px 0px 0px black);
+  }
 }
 
 .Menu-button {
   z-index: 2;
   position: absolute;
+  top: 0px;
   right: 0px;
   margin: 20px 30px 0px 0px;
 }
@@ -36,7 +56,6 @@
   border-color: #fff;
   border-width: 0 5px 5px 0;
   padding: 15px;
-  /* transform: rotate(-135deg); */
   margin-top: 10px;
   transition: all 1s ease-out;
 }
@@ -61,7 +80,7 @@
   top: 40%;
   z-index: 2;
   max-width: 250px;
-  animation-name: Init-photographer-logo;
+  opacity: 0;
   animation-duration: 5s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -76,32 +95,35 @@
     top: 40%;
   }
   100% {
-    top: 100%;
+    opacity: 1;
+    top: 98%;
   }
 }
 
 @keyframes Show-photographer-logo {
   0% {
-    top: 100%;
+    opacity: 1;
+    top: 98%;
   }
   100% {
+    opacity: 1;
     top: 40%;
   }
 }
 
 @keyframes Hide-photographer-logo {
   0% {
+    opacity: 1;
     top: 40%;
   }
   100% {
-    top: 100%;
+    opacity: 1;
+    top: 98%;
   }
 }
 
 .Photographer-logo img {
   width: 100%;
-  /* transition: all 2s ease-out; */
-  /* animation: Animate-app-logo 5s infinite; */
 }
 
 .Photographer-logo button {
@@ -111,13 +133,12 @@
 .Photographer-profile-info {
   position: absolute;
   left: 50%;
-  transform-origin: bottom;
   transform: translate(-50%, 0%);
-  top: 50%;
+  top: 40%;
   z-index: 1;
   display: flex;
   justify-content: center;
-  animation-name: Init-profile-info;
+  opacity: 0;
   animation-duration: 5s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -126,6 +147,8 @@
 @keyframes Init-profile-info {
   0% {
     opacity: 0;
+    transform: translate(-50%, 0%);
+    top: 40%;
   }
   50% {
     opacity: 1;
@@ -133,6 +156,7 @@
     top: 40%;
   }
   100% {
+    opacity: 1;
     transform: translate(-50%, 100%);
     top: 100%;
   }
@@ -140,10 +164,12 @@
 
 @keyframes Show-profile-info {
   0% {
+    opacity: 0;
     transform: translate(-50%, 100%);
     top: 100%;
   }
   100% {
+    opacity: 1;
     transform: translate(-50%, 0%);
     top: 40%;
   }
@@ -151,10 +177,12 @@
 
 @keyframes Hide-profile-info {
   0% {
+    opacity: 1;
     transform: translate(-50%, 0%);
     top: 40%;
   }
   100% {
+    opacity: 0;
     transform: translate(-50%, 100%);
     top: 100%;
   }
