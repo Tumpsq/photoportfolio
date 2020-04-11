@@ -4,6 +4,7 @@
 - More features will be added when I have more time to do so.
   * More detailed profile information section.
   * App optimization as now too large images are causing slower phones to run slower.
+  * Photo navigation feature for more controllable user experience so user can view entire photos also with smaller devices.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
