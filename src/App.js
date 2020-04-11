@@ -16,7 +16,6 @@ function App() {
   //     const player = document.querySelector(".PhotoPlayer");
 
   //     window.addEventListener("deviceorientation", function (event) {
-  //       console.log("SADASD");
   //       if (Math.abs(position) > limit) {
   //         if (position > limit) {
   //           position = limit;
@@ -41,7 +40,6 @@ function App() {
     }
 
     winLoad(function () {
-      console.log("LOADED");
       initMouseMoveFunctions();
       setIsLoading(false);
       setContentMaskState(false);

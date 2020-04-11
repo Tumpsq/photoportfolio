@@ -83,17 +83,14 @@ const PhotoPlayer = ({ initMouseMoveFunctions, setContentMaskState }) => {
         // WAIT FOR TIMEOUT AND CHANGE TO NEXT ONE
         if (currentImageIndex >= images.length - 1) {
           nextImageIndex = 0;
-          //console.log(nextImageIndex);
         } else {
           nextImageIndex++;
-          //console.log(nextImageIndex);
         }
         //setTimeout(() => {
         let newState = [...images];
         newState[currentImageIndex].state = false;
         newState[nextImageIndex].state = true;
         setImages(newState);
-        //console.log(newState);
         currentImageIndex = nextImageIndex;
         //}, 3000);
         break;
