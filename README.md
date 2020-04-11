@@ -1,3 +1,10 @@
+## Porfolio App for photographers
+
+- This is a simple photo showcasing app for landscape photographers.
+- More features will be added when I have more time to do so.
+  * More detailed profile information section.
+  * App optimization as now too large images are causing slower phones to run slower.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
